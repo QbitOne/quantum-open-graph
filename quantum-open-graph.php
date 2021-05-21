@@ -8,7 +8,7 @@
  * Author URI:      https://qbitone.de
  * Text Domain:     quantum-open-graph
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         0.1.1
  *
  * @package         Quantum_Open_Graph
  */
@@ -49,7 +49,7 @@ function qop_filter_language_attributes(string $output, string $doctype): string
 
 
 
-add_action('wp_head', 'qop_output_og_tags', 100, 0);
+add_action('wp_head', 'qop_output_og_tags', 500, 0);
 
 /**
  * Prints scripts or data in the head tag on the front end.
@@ -67,6 +67,15 @@ function qop_output_og_tags(): void
         "url"           => wp_get_canonical_url(),
         "site_name"     => get_bloginfo('name'),
     );
+
+
+    if (class_exists('ACF')) {
+        // check if the ACF 'description' field has a value
+        if (get_field('description')) {
+            $values['description'] = get_field('description');
+        }
+    }
+
 
     $image = qop_og_image();
 
