@@ -44,6 +44,16 @@ function qop_filter_language_attributes(string $output, string $doctype): string
     // space in front of the string is important!
     $output .= ' prefix="og: https://ogp.me/ns#"';
     return $output;
+
+    /**
+     * Alternative possibilty to write the extension.
+     * Might be better in handling further changes
+     */
+    // $attributes = [];
+    // $attributes[] = $output;
+    // $attributes[] = 'test';
+    // $output = implode(' ', $attributes);
+    // return $output;
 }
 
 
