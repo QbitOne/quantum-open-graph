@@ -70,11 +70,14 @@ function qop_output_og_tags(): void
     // last string concat for new line in source code
     $format = "\t" . '<meta property="og:%1$s" content="%2$s" />' . "\n";
 
+    global $wp;
+
     $values = array(
         "locale"        => "de_DE",
         "type"          => "website",
         "title"         => wp_get_document_title(),
-        "url"           => wp_get_canonical_url(),
+        // get the full URL along with query parameters.
+        "url"           => add_query_arg($wp->query_vars, home_url($wp->request)),
         "site_name"     => get_bloginfo('name'),
     );
 
