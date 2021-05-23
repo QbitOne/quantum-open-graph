@@ -104,10 +104,13 @@ function qop_og_image(): array
 {
     $image = [];
 
-    if (has_post_thumbnail()) {
+    // TODO fix it for general archive pages
+    $page_id = (is_home() && get_option('page_for_posts')) ? get_option('page_for_posts') : null;
+
+    if (has_post_thumbnail($page_id)) {
 
         // get image url
-        $url = get_the_post_thumbnail_url();
+        $url = get_the_post_thumbnail_url($page_id);
         // matches 'http:' at the beginning of the string (^) and case-insensitiv (i)
         $url_secure = preg_replace("/^http:/i", "https:", $url);
         $image['image'] = $url;
@@ -115,12 +118,13 @@ function qop_og_image(): array
 
         // get image alt
         global $post;
-        $thumbnail_id = get_post_thumbnail_id($post->ID);
+        $image_id = $page_id ? $page_id : $post->ID;
+        $thumbnail_id = get_post_thumbnail_id($image_id);
         $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
         $image['image:alt'] = $alt;
 
         // get image type
-        $case = exif_imagetype(get_the_post_thumbnail_url());
+        $case = exif_imagetype($url);
         switch ($case) {
             case IMAGETYPE_JPEG:
                 $type = 'image/jpeg';
