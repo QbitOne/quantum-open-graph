@@ -8,7 +8,7 @@
  * Author URI:      https://qbitone.de
  * Text Domain:     quantum-open-graph
  * Domain Path:     /languages
- * Version:         0.1.4
+ * Version:         0.1.5
  *
  * @package         Quantum_Open_Graph
  */
