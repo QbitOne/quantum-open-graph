@@ -84,8 +84,9 @@ function qop_output_og_tags(): void
 
     if (class_exists('ACF')) {
         // check if the ACF 'description' field has a value
-        if (get_field('quantum_description')) {
-            $values['description'] = get_field('quantum_description');
+        // TODO: field name should be optimized/prefixed to prevent naming collisons
+        if (get_field('description')) {
+            $values['description'] = get_field('description');
         }
     }
 
