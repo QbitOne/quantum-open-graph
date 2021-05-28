@@ -8,7 +8,7 @@
  * Author URI:      https://qbitone.de
  * Text Domain:     quantum-open-graph
  * Domain Path:     /languages
- * Version:         0.1.3
+ * Version:         0.1.4
  *
  * @package         Quantum_Open_Graph
  */
@@ -84,8 +84,8 @@ function qop_output_og_tags(): void
 
     if (class_exists('ACF')) {
         // check if the ACF 'description' field has a value
-        if (get_field('description')) {
-            $values['description'] = get_field('description');
+        if (get_field('quantum_description')) {
+            $values['description'] = get_field('quantum_description');
         }
     }
 
