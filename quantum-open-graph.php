@@ -113,7 +113,7 @@ function qop_og_image(): array
         $url = get_the_post_thumbnail_url($page_id);
         // matches 'http:' at the beginning of the string (^) and case-insensitiv (i)
         $url_secure = preg_replace("/^http:/i", "https:", $url);
-        $image['image'] = $url;
+        $image['image:url'] = $url;
         $image['image:secure_url'] = $url_secure;
 
         // get image alt
