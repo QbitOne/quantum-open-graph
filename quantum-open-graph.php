@@ -42,7 +42,8 @@ add_filter('language_attributes', 'qop_filter_language_attributes', 10, 2);
 function qop_filter_language_attributes(string $output, string $doctype): string
 {
     // space in front of the string is important!
-    $output .= ' prefix="og: https://ogp.me/ns#"';
+    // $output .= ' prefix="og: https://ogp.me/ns#"';
+    $output .= ' xmlns:og="http://opengraphprotocol.org/schema/"';
     return $output;
 
     /**
