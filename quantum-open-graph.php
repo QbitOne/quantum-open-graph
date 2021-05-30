@@ -68,7 +68,7 @@ add_action('wp_head', 'qop_output_og_tags', 500, 0);
 function qop_output_og_tags(): void
 {
     // last string concat for new line in source code
-    $format = "\t" . '<meta property="og:%1$s" content="%2$s" />' . "\n";
+    $format = "\t" . '<meta property="og:%1$s" content="%2$s">' . "\n";
 
     global $wp;
 
@@ -114,7 +114,7 @@ function qop_og_image(): array
         $url = get_the_post_thumbnail_url($page_id);
         // matches 'http:' at the beginning of the string (^) and case-insensitiv (i)
         $url_secure = preg_replace("/^http:/i", "https:", $url);
-        $image['image:url'] = $url;
+        $image['image'] = $url;
         $image['image:secure_url'] = $url_secure;
 
         // get image alt
