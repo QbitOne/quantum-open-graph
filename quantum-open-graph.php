@@ -8,7 +8,7 @@
  * Author URI:      https://qbitone.de
  * Text Domain:     quantum-open-graph
  * Domain Path:     /languages
- * Version:         0.1.7
+ * Version:         0.1.8
  *
  * @package         Quantum_Open_Graph
  */
@@ -42,8 +42,7 @@ add_filter('language_attributes', 'qop_filter_language_attributes', 10, 2);
 function qop_filter_language_attributes(string $output, string $doctype): string
 {
     // space in front of the string is important!
-    // $output .= ' prefix="og: https://ogp.me/ns#"';
-    $output .= ' xmlns:og="http://opengraphprotocol.org/schema/"';
+    $output .= ' prefix="og: https://ogp.me/ns#"';
     return $output;
 
     /**
