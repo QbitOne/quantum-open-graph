@@ -8,7 +8,7 @@
  * Author URI:      https://qbitone.de
  * Text Domain:     quantum-open-graph
  * Domain Path:     /languages
- * Version:         0.1.8
+ * Version:         0.2.0
  *
  * @package         Quantum_Open_Graph
  */
@@ -17,6 +17,8 @@ if (!defined('ABSPATH')) exit;
 
 define('QOP_PLUGIN_DIR', plugin_dir_path(__FILE__));
 
+
+require 'vendor/autoload.php';
 
 
 add_action('plugins_loaded', 'qop_load_textdomain', 10, 0);
@@ -68,7 +70,7 @@ add_action('wp_head', 'qop_output_og_tags', 500, 0);
 function qop_output_og_tags(): void
 {
     // last string concat for new line in source code
-    $format = "\t" . '<meta property="og:%1$s" content="%2$s" />' . "\n";
+    $format = "\t" . '<meta property="og:%1$s" content="%2$s">' . "\n";
 
     global $wp;
 
@@ -114,7 +116,7 @@ function qop_og_image(): array
         $url = get_the_post_thumbnail_url($page_id);
         // matches 'http:' at the beginning of the string (^) and case-insensitiv (i)
         $url_secure = preg_replace("/^http:/i", "https:", $url);
-        $image['image:url'] = $url;
+        $image['image'] = $url;
         $image['image:secure_url'] = $url_secure;
 
         // get image alt
@@ -144,3 +146,13 @@ function qop_og_image(): array
     }
     return $image;
 }
+
+
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'https://github.com/QbitOne/quantum-open-graph/',
+    __FILE__,
+    'quantum-open-graph'
+);
+
+//Set the branch that contains the stable release.
+$myUpdateChecker->setBranch('master');
