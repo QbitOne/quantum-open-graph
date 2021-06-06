@@ -1,0 +1,14 @@
+{
+    "name": "qbitone/quantum-open-graph",
+    "description": "Composer File for this Plugin",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Andreas Geyer",
+            "email": "andreas@qbitone.de"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^4.11"
+    }
+}
