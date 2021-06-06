@@ -18,6 +18,8 @@ if (!defined('ABSPATH')) exit;
 define('QOP_PLUGIN_DIR', plugin_dir_path(__FILE__));
 
 
+require 'vendor/autoload.php';
+
 
 add_action('plugins_loaded', 'qop_load_textdomain', 10, 0);
 
@@ -144,3 +146,13 @@ function qop_og_image(): array
     }
     return $image;
 }
+
+
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'https://github.com/QbitOne/quantum-open-graph/',
+    __FILE__,
+    'quantum-open-graph'
+);
+
+//Set the branch that contains the stable release.
+$myUpdateChecker->setBranch('master');
